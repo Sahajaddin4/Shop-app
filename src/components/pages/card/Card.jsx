@@ -34,7 +34,7 @@ function Card(props) {
     // Show a success toast notification
     toast.success('Product added to cart', {
       position: 'top-center',
-      hideProgressBar: false,
+      hideProgressBar: true,
       autoClose: 500
     });
 
@@ -48,9 +48,9 @@ function Card(props) {
     dispatch(remove(product.id));
 
     // Show a success toast notification for removal
-    toast.success('Product removed from cart', {
+    toast.warning('Product removed from cart', {
       position: 'top-center',
-      hideProgressBar: false,
+      hideProgressBar: true,
       autoClose: 500
     });
 

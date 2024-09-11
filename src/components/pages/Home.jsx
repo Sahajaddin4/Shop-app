@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react'
-import Spinner from './spinner/Spinner';
-import Card from './card/Card';
+import React, { useEffect, useState } from "react";
+import Spinner from "./spinner/Spinner";
+import Card from "./card/Card";
 
 function Home() {
   const API_URL = import.meta.env.VITE_API_URL;
@@ -9,10 +9,11 @@ function Home() {
   async function fetchProducts() {
     setLoader(true);
     let res = await fetch(API_URL);
-      let result=await res.json();
-      setProducts(result);
+    let result = await res.json();
+    setProducts(result);
+    
       setLoader(false);
- 
+   
     
   }
 
@@ -20,16 +21,23 @@ function Home() {
     fetchProducts();
   }, []);
 
-
   return (
-    <div className='max-w-[80%] mx-auto grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5   mt-12'>
-      
-      {
-        loader ? <Spinner /> :
-         (products.length > 0 ? products.map((product) => {return <Card product={product} key={product.id} />}):<p>No data found</p>)
-      }
+    <div className="">
+      {loader ? (
+        <Spinner />
+      ) : (
+        <div className="max-w-[80%] mx-auto grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5   mt-12">
+          {products.length > 0 ? (
+            products.map((product) => {
+              return <Card product={product} key={product.id} />;
+            })
+          ) : (
+            <p>No data found</p>
+          )}
+        </div>
+      )}
     </div>
-  )
+  );
 }
 
-export default Home
+export default Home;
